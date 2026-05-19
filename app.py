@@ -3,9 +3,11 @@ import pandas as pd
 import numpy as np
 import joblib
 
-# मॉडल और फीचर्स लोड करना
-model = joblib.load('xgb_churn_model.pkl')
-model_features = joblib.load('model_features.pkl')
+# Model aur Features load karna
+import os
+model_path = os.path.join(os.path.dirname(__file__), 'xgb_churn_model.pkl')
+model = joblib.load(model_path)
+model_features = joblib.load(os.path.join(os.path.dirname(__file__), 'model_features.pkl'))
 
 st.title("🏦 Bank Customer Churn - Predictive Scoring System")
 st.subheader("European Central Bank (ECB) - Government Stakeholder Dashboard")
