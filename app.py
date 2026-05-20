@@ -59,11 +59,8 @@ if isinstance(prob, (list, np.ndarray)):
     risk_score = float(prob[0]) * 100
 else:
     risk_score = float(prob) * 100
-
 risk_score = int(risk_score)
-    
     st.metric(label="📊 Real-Time ML Risk Score", value=f"{risk_score} / 100")
-    
     if risk_score >= 61:
         st.error("🚨 HIGH RISK ZONE: Customer is highly likely to churn. Immediate retention action needed.")
     elif risk_score >= 31:
