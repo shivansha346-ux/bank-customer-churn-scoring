@@ -54,7 +54,13 @@ input_data = input_data[model_features]
 # लाइव प्रेडिक्शन बटन
 if st.button("Calculate Churn Risk Score"):
     prob = model.predict_proba(input_data)[:, 1]
-    risk_score = int(prob * 100)
+    # Extracting the single probability value safely from the model array
+if isinstance(prob, (list, np.ndarray)):
+    risk_score = float(prob[0]) * 100
+else:
+    risk_score = float(prob) * 100
+
+risk_score = int(risk_score)
     
     st.metric(label="📊 Real-Time ML Risk Score", value=f"{risk_score} / 100")
     
